@@ -109,7 +109,7 @@ public class Leg2D : MonoBehaviour
                 if (timeSinceStart <= timeToReach )
                 {
                     timeSinceStart += Time.deltaTime;
-                    bezier.t = timeSinceStart / timeToReach;
+                    bezier.percentageOfCurve = timeSinceStart / timeToReach;
                 }
                 else
                     rb.AddForce(endPos - transform.position + new Vector3(hit.normal.x * 2, hit.normal.y, 0));
@@ -136,7 +136,7 @@ public class Leg2D : MonoBehaviour
             if (timeSinceStart <= timeToReach)
             {
                 timeSinceStart += Time.deltaTime;
-                bezier.t = 1f - timeSinceStart / timeToReach;
+                bezier.percentageOfCurve = Mathf.Max(1f - timeSinceStart / timeToReach,0);
             }
             else
             {

@@ -13,7 +13,7 @@ public class Bezier : MonoBehaviour
     Vector3[] pos;
 
     [Range(0, 1)]
-    public float t;
+    public float percentageOfCurve;
 
     void Start()
     {
@@ -24,7 +24,10 @@ public class Bezier : MonoBehaviour
 
     public void Update()
     {
-        pos = new Vector3[(int)(t * nPoints) + 1];
+        try
+        {
+
+        pos = new Vector3[(int)(percentageOfCurve * nPoints) + 1];
 
         for (int i = 0; i < pos.Length; i++)
         {
@@ -32,6 +35,11 @@ public class Bezier : MonoBehaviour
         }
         lineRenderer.positionCount = pos.Length;
         lineRenderer.SetPositions(pos);
+        }
+        catch
+        {
+            Debug.Log("Exception");
+        }
     }
 
     public Vector3 getP(float t)

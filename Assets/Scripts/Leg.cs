@@ -107,7 +107,7 @@ public class Leg : MonoBehaviour
                 if (timeSinceStart <= timeToReach)
                 {
                     timeSinceStart += Time.deltaTime;
-                    bezier.t = timeSinceStart / timeToReach;
+                    bezier.percentageOfCurve = timeSinceStart / timeToReach;
                 }
                 else
                     rb.AddForce((endPos - transform.position + hit.normal * 2) * force);
@@ -134,7 +134,7 @@ public class Leg : MonoBehaviour
             if (timeSinceStart <= timeToReach)
             {
                 timeSinceStart += Time.deltaTime;
-                bezier.t = 1f - timeSinceStart / timeToReach;
+                bezier.percentageOfCurve = Mathf.Max(1f - timeSinceStart / timeToReach, 0);
             }
             else
             {
